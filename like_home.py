@@ -16,7 +16,7 @@ client = tweepy.Client(
 try:
     for tweets in tweepy.Paginator(
         client.get_home_timeline,
-        max_results=100
+        max_results=50
     ):
         for tweet in tweets.json()['data']:
             # pprint.pprint(tweet)
