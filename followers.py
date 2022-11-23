@@ -1,16 +1,8 @@
-# PenguinHackTwitter
-for [@hacks_penguin](https://twitter.com/hacks_penguin)
+import os
+import pprint
+import tweepy
+import requests
 
-## setup.sh
-```
-$ bash setup.sh
-```
-
-## tweepy Client.return_type
-
-you can use requests.Response
-
-```py
 client = tweepy.Client(
     os.environ['BEARER_TOKEN'],
     os.environ['CONSUMER_KEY'],
@@ -20,8 +12,8 @@ client = tweepy.Client(
     return_type=requests.Response,
     wait_on_rate_limit=True
 )
-```
 
-## docs
 
-[tweepy](https://docs.tweepy.org/en/stable/index.html)
+response = client.get_users_followers(input('id>'))
+
+pprint.pprint(response.json())
