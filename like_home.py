@@ -13,19 +13,16 @@ client = tweepy.Client(
     wait_on_rate_limit=True
 )
 
-id = input('id>')
-
 try:
-    for followers in tweepy.Paginator(
-        client.get_users_followers,
-        id=id,
-        max_results=1000
+    for tweets in tweepy.Paginator(
+        client.get_home_timeline,
+        max_results=100
     ):
-        for follower in followers.json()['data']:
-            # pprint.pprint(follower)
-            print(follower['username'])
+        for tweet in tweets.json()['data']:
+            # pprint.pprint(tweet)
+            print(tweet['text'])
             try:
-                client.follow_user(follower['id'])
+                client.like(tweet['id'])
             except Exception as e:
                 print(e)
 except Exception as e:
